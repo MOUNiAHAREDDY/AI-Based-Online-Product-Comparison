@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comparely — AI Product Comparison</title>
+  <meta name="description" content="Compare online products, prices, ratings and customer sentiment with interactive charts.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#"><span class="brand-mark">C</span> comparely<span class="brand-dot">.</span></a>
+  <nav><a href="#explore">Explore</a><a href="#compare">Compare</a><a href="#insights">AI Insights</a></nav>
+  <a class="nav-cta" href="#explore">Start comparing <span>↗</span></a>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="pulse"></span> SMARTER SHOPPING STARTS HERE</div>
+      <h1>Find the best product.<br><span>Not just the lowest price.</span></h1>
+      <p>Compare prices, specs and real customer feedback in one clear view. Let AI help you make a confident choice.</p>
+      <div class="hero-actions"><a class="primary-btn" href="#explore">Explore products <span>↓</span></a><div class="trust"><div class="avatars"><i>R</i><i>A</i><i>S</i></div><span>Make informed choices</span></div></div>
+      <div class="hero-stats"><div><strong>3+</strong><small>Shopping sources</small></div><div><strong>AI</strong><small>Review insights</small></div><div><strong>Live</strong><small>Visual comparison</small></div></div>
+    </div>
+    <div class="hero-visual">
+      <div class="orb orb-one"></div><div class="orb orb-two"></div>
+      <div class="floating-tag tag-top"><span class="tag-icon">✦</span><div><b>Smart insights</b><small>Review sentiment</small></div></div>
+      <div class="hero-product-card">
+        <div class="product-image-wrap"><img src="https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=700&q=80" alt="Wireless earbuds"></div>
+        <div class="mini-product-info"><span class="mini-label">TOP VALUE PICK</span><h3>Wireless earbuds</h3><div class="mini-bottom"><strong>₹1,299</strong><span class="rating">★ 4.1</span></div></div>
+        <div class="value-chip">Best value <span>↗</span></div>
+      </div>
+      <div class="floating-tag tag-bottom"><span class="chart-icon">▥</span><div><b>Price comparison</b><small>Visualized for you</small></div></div>
+    </div>
+  </section>
+
+  <section class="section" id="explore">
+    <div class="section-heading"><div><div class="eyebrow">PRODUCT DISCOVERY</div><h2>Explore products</h2><p>Choose products and compare them side by side.</p></div><div class="product-count"><span class="count-dot"></span> {{ products|length }} products available</div></div>
+    <div class="toolbar">
+      <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search products, brands..." aria-label="Search products"></label>
+      <select id="categoryFilter" aria-label="Filter category"><option value="All">All categories</option>{% for category in categories %}<option value="{{ category }}">{{ category }}</option>{% endfor %}</select>
+      <button class="compare-btn" id="compareSelected">Compare selected <span id="selectedCount">0</span></button>
+    </div>
+    <div class="product-grid" id="productGrid">
+      {% for p in products %}
+      <article class="product-card" data-id="{{ p.id }}">
+        <div class="card-image">
+          <img src="{{ p.image }}" alt="{{ p.name }}" loading="lazy">
+          <label class="select-product"><input type="checkbox" class="product-check" value="{{ p.id }}"><span></span> Compare</label>
+          <span class="platform-badge">{{ p.platform }}</span>
+        </div>
+        <div class="card-content">
+          <div class="product-meta"><span>{{ p.brand }}</span><span class="rating">★ {{ p.rating }}</span></div>
+          <h3>{{ p.name }}</h3>
+          <div class="price-row"><strong>₹{{ "{:,}".format(p.price) }}</strong><span class="price-caption">listed price</span></div>
+          <div class="card-features">{% for feature in p.features[:2] %}<span>✓ {{ feature }}</span>{% endfor %}</div>
+          <button class="text-btn view-details" data-id="{{ p.id }}">View details <span>→</span></button>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    <div id="emptyState" class="empty-state" hidden>No products match your search. Try another keyword.</div>
+  </section>
+
+  <section class="comparison-section" id="compare">
+    <div class="section-heading"><div><div class="eyebrow">SIDE-BY-SIDE ANALYSIS</div><h2>Your comparison</h2><p>Select products above, then compare their key details.</p></div><span class="section-icon">↔</span></div>
+    <div id="comparisonEmpty" class="comparison-empty"><div class="empty-icon">⇄</div><h3>Ready to compare?</h3><p>Select two or more products from the cards above to see their differences.</p></div>
+    <div id="comparisonContent" hidden>
+      <div class="table-wrap"><table id="comparisonTable"></table></div>
+      <div class="charts-grid">
+        <div class="chart-card"><div class="chart-title"><div><h3>Price comparison</h3><p>Lower price means better affordability</p></div><span class="chart-symbol">▥</span></div><div class="chart-wrap"><canvas id="priceChart"></canvas></div></div>
+        <div class="chart-card"><div class="chart-title"><div><h3>Ratings & sentiment</h3><p>Customer satisfaction overview</p></div><span class="chart-symbol">✦</span></div><div class="chart-wrap"><canvas id="ratingChart"></canvas></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="insights-section" id="insights">
+    <div class="insights-copy"><div class="eyebrow light-eyebrow">AI-POWERED DECISION SUPPORT</div><h2>Less scrolling.<br><span>More confidence.</span></h2><p>Our review analyzer estimates customer sentiment and combines it with product ratings and price to highlight a strong value option.</p><ul><li><span>✓</span> Understand positive and negative feedback</li><li><span>✓</span> Compare key specifications instantly</li><li><span>✓</span> Get a transparent best-value score</li></ul><small class="disclaimer">Demo project: sample product data and illustrative scoring. Verify prices on the retailer's website.</small></div>
+    <div class="insight-panel"><div class="panel-header"><div><span class="panel-kicker">YOUR AI SUMMARY</span><h3>Recommendation</h3></div><span class="ai-badge">✦ AI</span></div><div id="recommendationBox" class="recommendation-placeholder"><div class="sparkle">✦</div><p>Select products and press <b>Compare selected</b> to generate your recommendation.</p></div><div class="insight-footer"><span class="status-dot"></span> Review sentiment analysis <span class="footer-sep">•</span> Value scoring</div></div>
+  </section>
+</main>
+<footer><a class="brand" href="#"><span class="brand-mark">C</span> comparely<span class="brand-dot">.</span></a><span>AI-Based Online Product Comparison · Student project</span><a href="#top">Back to top ↑</a></footer>
+
+<div class="modal-backdrop" id="detailsModal" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="modal-close" id="closeModal" aria-label="Close">×</button><div id="modalBody"></div></div></div>
+<script>
+  window.INITIAL_PRODUCTS = {{ products|tojson }};
+</script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

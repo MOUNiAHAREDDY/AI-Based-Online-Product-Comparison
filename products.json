@@ -1,0 +1,128 @@
+[
+  {
+    "id": "p1",
+    "name": "boAt Airdopes 141",
+    "brand": "boAt",
+    "category": "Audio",
+    "price": 1299,
+    "platform": "Amazon",
+    "rating": 4.1,
+    "features": [
+      "42-hour playback",
+      "ASAP Charge",
+      "Bluetooth 5.1",
+      "IPX4 water resistance"
+    ],
+    "image": "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=700&q=80",
+    "reviews": [
+      "Great battery life and sound quality for the price.",
+      "Comfortable fit, but microphone quality is average.",
+      "Very good value and easy to connect."
+    ]
+  },
+  {
+    "id": "p2",
+    "name": "Noise Buds VS104",
+    "brand": "Noise",
+    "category": "Audio",
+    "price": 1499,
+    "platform": "Flipkart",
+    "rating": 4.0,
+    "features": [
+      "45-hour playback",
+      "Quad mic ENC",
+      "Bluetooth 5.2",
+      "Hyper sync"
+    ],
+    "image": "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=700&q=80",
+    "reviews": [
+      "Good sound and battery backup.",
+      "The fit is nice, but calls can be unclear outside.",
+      "Affordable and reliable for daily use."
+    ]
+  },
+  {
+    "id": "p3",
+    "name": "Realme Buds T110",
+    "brand": "Realme",
+    "category": "Audio",
+    "price": 1799,
+    "platform": "Realme Store",
+    "rating": 4.3,
+    "features": [
+      "38-hour playback",
+      "AI ENC calls",
+      "Bluetooth 5.4",
+      "10mm dynamic bass driver"
+    ],
+    "image": "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=700&q=80",
+    "reviews": [
+      "Excellent bass and clear sound.",
+      "The case is compact and battery is decent.",
+      "Great audio, though price is a little high."
+    ]
+  },
+  {
+    "id": "p4",
+    "name": "Samsung Galaxy M35 5G",
+    "brand": "Samsung",
+    "category": "Mobiles",
+    "price": 16999,
+    "platform": "Amazon",
+    "rating": 4.2,
+    "features": [
+      "6.6-inch Super AMOLED",
+      "6000mAh battery",
+      "50MP camera",
+      "5G connectivity"
+    ],
+    "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=700&q=80",
+    "reviews": [
+      "Display is bright and battery lasts long.",
+      "Camera is good in daylight.",
+      "A little heavy but performance is smooth."
+    ]
+  },
+  {
+    "id": "p5",
+    "name": "Redmi Note 13 5G",
+    "brand": "Xiaomi",
+    "category": "Mobiles",
+    "price": 15499,
+    "platform": "Flipkart",
+    "rating": 4.0,
+    "features": [
+      "6.67-inch AMOLED",
+      "5000mAh battery",
+      "108MP camera",
+      "5G connectivity"
+    ],
+    "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=700&q=80",
+    "reviews": [
+      "Good display for this price.",
+      "Camera details are nice in daylight.",
+      "Battery is okay and performance is decent."
+    ]
+  },
+  {
+    "id": "p6",
+    "name": "HP 15s Laptop",
+    "brand": "HP",
+    "category": "Laptops",
+    "price": 42990,
+    "platform": "HP Store",
+    "rating": 4.1,
+    "features": [
+      "Intel Core i5",
+      "16GB RAM",
+      "512GB SSD",
+      "15.6-inch Full HD"
+    ],
+    "image": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=80",
+    "reviews": [
+      "Fast for office and study tasks.",
+      "Keyboard is comfortable.",
+      "Good laptop but speakers are average."
+    ]
+  }
+]
